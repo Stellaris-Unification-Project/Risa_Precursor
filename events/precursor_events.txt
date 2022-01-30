@@ -82,7 +82,7 @@ ship_event = {
 	
 	trigger = {
 		solar_system = { has_star_flag = precursor_1 }
-		solar_system = { NOT = { is_same_value = root.owner.capital_scope.solar_system } }
+		solar_system = { NOT = { is_same_empire = root.owner.capital_scope.solar_system } }
 		FROM = { 
 			has_anomaly = no 
 			is_star = no
@@ -922,7 +922,7 @@ ship_event = {
 		from = { save_event_target_as = vultaum_home_planet }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:vultaum_home_planet = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -1115,7 +1115,7 @@ ship_event = {
 	
 	trigger = {
 		solar_system = { has_star_flag = precursor_2 }
-		solar_system = { NOT = { is_same_value = root.owner.capital_scope.solar_system } }
+		solar_system = { NOT = { is_same_empire = root.owner.capital_scope.solar_system } }
 		FROM = { 
 			has_anomaly = no 
 			is_star = no
@@ -1669,8 +1669,10 @@ country_event = {
 	immediate = {
 		if = {
 			limit = {
-				NOT = { has_global_flag = yuht_system_discovered }
-				NOT = { has_country_flag = yuht_system }
+				NOR = {
+					has_global_flag = yuht_system_discovered
+					has_country_flag = yuht_system
+				}
 				has_completed_event_chain_counter = {
 					event_chain = "yuht_chain" 
 					counter = "yuht_artifacts" 
@@ -1847,7 +1849,7 @@ ship_event = {
 		from = { save_event_target_as = yuht_home_planet }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:yuht_home_planet = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -2032,7 +2034,7 @@ ship_event = {
 	
 	trigger = {
 		solar_system = { has_star_flag = precursor_3 }
-		solar_system = { NOT = { is_same_value = root.owner.capital_scope.solar_system } }
+		solar_system = { NOT = { is_same_empire = root.owner.capital_scope.solar_system } }
 		FROM = { 
 			has_anomaly = no 
 			is_star = no
@@ -3049,7 +3051,7 @@ ship_event = {
 		from = { save_event_target_as = league_home_planet }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:league_home_planet = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -3235,7 +3237,7 @@ ship_event = {
 	
 	trigger = {
 		solar_system = { has_star_flag = precursor_4 }
-		solar_system = { NOT = { is_same_value = root.owner.capital_scope.solar_system } }
+		solar_system = { NOT = { is_same_empire = root.owner.capital_scope.solar_system } }
 		FROM = { 
 			has_anomaly = no 
 			is_star = no
@@ -4083,7 +4085,7 @@ ship_event = {
 		from = { save_event_target_as = irassian_home_planet }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:irassian_home_planet = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -4268,7 +4270,7 @@ ship_event = {
 	
 	trigger = {
 		solar_system = { has_star_flag = precursor_5 }
-		solar_system = { NOT = { is_same_value = root.owner.capital_scope.solar_system } }
+		solar_system = { NOT = { is_same_empire = root.owner.capital_scope.solar_system } }
 		FROM = { 
 			has_anomaly = no 
 			is_star = no
@@ -5114,7 +5116,7 @@ ship_event = {
 		from = { save_event_target_as = cybrex_home_section }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:cybrex_home_section = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -5633,8 +5635,10 @@ planet_event = {
 	
 	trigger = {
 		always = no
-		NOT = { exists = fromfrom }
-		NOT = { has_planet_flag = precursor_fix }
+		NOR = {
+			exists = fromfrom
+			has_planet_flag = precursor_fix
+		}
 		OR = {
 			AND = {
 				has_global_flag = vultaum_homeworld_found
@@ -5776,9 +5780,8 @@ ship_event = {
 	immediate = {
 		fromfrom = { set_country_flag = cybrex_world_found }
 		from = {
-			random_system_planet = {
-				limit = { is_star = yes }
-				surveyed = { set_surveyed = yes surveyor = fromfrom }
+			star = {
+				set_surveyed = { surveyed = yes surveyor = fromfrom }
 				save_event_target_as = cybrex_home_section_new
 				if = {
 					limit = { NOT = { has_global_flag = cybrex_homeworld_found } }
@@ -5867,7 +5870,7 @@ ship_event = {
 	#	fromfrom = { save_event_target_as = vultaum_home_planet_new }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:vultaum_home_planet_new = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -6378,7 +6381,7 @@ ship_event = {
 	#	fromfrom = { save_event_target_as = yuht_home_planet_new }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:yuht_home_planet_new = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -6793,7 +6796,7 @@ ship_event = {
 	#	fromfrom = { save_event_target_as = league_home_planet_new }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:league_home_planet_new = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -7304,7 +7307,7 @@ ship_event = {
 	#	fromfrom = { save_event_target_as = irassian_home_planet_new }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:irassian_home_planet_new = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -7815,7 +7818,7 @@ ship_event = {
 	#	fromfrom = { save_event_target_as = cybrex_home_section_new }
 		every_country = {
 			limit = {
-				NOT = { is_same_value = root.owner }
+				NOT = { is_same_empire = root.owner }
 				event_target:cybrex_home_section_new = {
 					is_surveyed = { who = PREV status = yes }
 				}
@@ -8403,7 +8406,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_1
-										any_planet = {
+										any_system_planet = {
 											uninhabitable_regular_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8415,7 +8418,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_1
-								any_planet = {
+								any_system_planet = {
 									uninhabitable_regular_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8449,7 +8452,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_1
-										any_planet = {
+										any_system_planet = {
 											habitable_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8466,7 +8469,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_1
-								any_planet = {
+								any_system_planet = {
 									habitable_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8505,7 +8508,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_1
-										any_planet = {
+										any_system_planet = {
 											is_planet_class = pc_gas_giant
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8517,7 +8520,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_1
-								any_planet = {
+								any_system_planet = {
 									is_planet_class = pc_gas_giant
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8546,7 +8549,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_1
-										any_planet = {
+										any_system_planet = {
 											is_asteroid = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8558,7 +8561,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_1
-								any_planet = {
+								any_system_planet = {
 									is_asteroid = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8596,7 +8599,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_2
-										any_planet = {
+										any_system_planet = {
 											uninhabitable_regular_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8608,7 +8611,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_2
-								any_planet = {
+								any_system_planet = {
 									uninhabitable_regular_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8642,7 +8645,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_2
-										any_planet = {
+										any_system_planet = {
 											habitable_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8659,7 +8662,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_2
-								any_planet = {
+								any_system_planet = {
 									habitable_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8698,7 +8701,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_2
-										any_planet = {
+										any_system_planet = {
 											is_planet_class = pc_gas_giant
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8710,7 +8713,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_2
-								any_planet = {
+								any_system_planet = {
 									is_planet_class = pc_gas_giant
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8739,7 +8742,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_2
-										any_planet = {
+										any_system_planet = {
 											is_asteroid = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8751,7 +8754,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_2
-								any_planet = {
+								any_system_planet = {
 									is_asteroid = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8790,7 +8793,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_3
-										any_planet = {
+										any_system_planet = {
 											uninhabitable_regular_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8802,7 +8805,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_3
-								any_planet = {
+								any_system_planet = {
 									uninhabitable_regular_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8840,7 +8843,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_3
-										any_planet = {
+										any_system_planet = {
 											habitable_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8857,7 +8860,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_3
-								any_planet = {
+								any_system_planet = {
 									habitable_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8896,7 +8899,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_3
-										any_planet = {
+										any_system_planet = {
 											is_planet_class = pc_gas_giant
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8908,7 +8911,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_3
-								any_planet = {
+								any_system_planet = {
 									is_planet_class = pc_gas_giant
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8937,7 +8940,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_3
-										any_planet = {
+										any_system_planet = {
 											is_asteroid = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8949,7 +8952,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_3
-								any_planet = {
+								any_system_planet = {
 									is_asteroid = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -8987,7 +8990,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_4
-										any_planet = {
+										any_system_planet = {
 											uninhabitable_regular_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -8999,7 +9002,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_4
-								any_planet = {
+								any_system_planet = {
 									uninhabitable_regular_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9035,7 +9038,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_4
-										any_planet = {
+										any_system_planet = {
 											habitable_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9052,7 +9055,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_4
-								any_planet = {
+								any_system_planet = {
 									habitable_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9091,7 +9094,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_4
-										any_planet = {
+										any_system_planet = {
 											is_planet_class = pc_gas_giant
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9103,7 +9106,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_4
-								any_planet = {
+								any_system_planet = {
 									is_planet_class = pc_gas_giant
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9132,7 +9135,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_4
-										any_planet = {
+										any_system_planet = {
 											is_asteroid = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9144,7 +9147,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_4
-								any_planet = {
+								any_system_planet = {
 									is_asteroid = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9184,7 +9187,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_5
-										any_planet = {
+										any_system_planet = {
 											uninhabitable_regular_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9196,7 +9199,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_5
-								any_planet = {
+								any_system_planet = {
 									uninhabitable_regular_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9230,7 +9233,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_5
-										any_planet = {
+										any_system_planet = {
 											habitable_planet = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9247,7 +9250,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_5
-								any_planet = {
+								any_system_planet = {
 									habitable_planet = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9286,7 +9289,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_5
-										any_planet = {
+										any_system_planet = {
 											is_planet_class = pc_gas_giant
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9298,7 +9301,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_5
-								any_planet = {
+								any_system_planet = {
 									is_planet_class = pc_gas_giant
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
@@ -9327,7 +9330,7 @@ country_event = {
 								NOT = {
 									any_system_within_border = {
 										has_star_flag = precursor_5
-										any_planet = {
+										any_system_planet = {
 											is_asteroid = yes
 											is_surveyed = { who = ROOT status = yes }
 											NOT = { has_planet_flag = precursor_world }
@@ -9339,7 +9342,7 @@ country_event = {
 						random_system_within_border = {
 							limit = {
 								has_star_flag = precursor_5
-								any_planet = {
+								any_system_planet = {
 									is_asteroid = yes
 									is_surveyed = { who = ROOT status = yes }
 									NOT = { has_planet_flag = precursor_world }
